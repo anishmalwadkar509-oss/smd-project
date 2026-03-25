@@ -33,15 +33,6 @@ Mind-Map Generator/
 ---
 
 
-## 💻 How to Run Locally
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/PratikDate01/Mind-Map-Generator.git
-
-2. Navigate to the folder:
-   ```bash
-   cd Mind-Map Generator
-3. Open index.html in your browser.
 
 
