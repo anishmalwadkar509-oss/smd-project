@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI MindMap Generator</title>
+  <title>Pratik Date | Portfolio</title>
+   <meta name="description" content="Official website of Pratik Date - showcasing projects, skills, and contact information.">
+   <meta name="keywords" content="Pratik Date, Portfolio, Web Developer, Projects, Contact">
+   <meta name="robots" content="index, follow">
+   <meta name="author" content="Pratik Date">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+   <script src="script.js"></script>
+  <meta name="google-site-verification" content="HMmuwfa1cDxRn2XttiLmvxPuq828xt9Ou_w1SPefj2E" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🧠 AI MindMap Generator</h1>
+      <p>Transform any topic into a visual learning experience</p>
+    </div>
+
+    <div class="input-section">
+      <div class="input-group">
+        <input id="topicInput" type="text" placeholder="Enter any topic (e.g., Machine Learning, JavaScript, Biology)..." maxlength="100">
+        <button class="btn btn-primary" onclick="generateMindMap()">
+          <span id="generateText">Generate MindMap</span>
+        </button>
+      </div>
+      
+      <div class="suggestion-chips">
+        <div class="chip" onclick="setTopic('Data Structures')">Data Structures</div>
+        <div class="chip" onclick="setTopic('Machine Learning')">Machine Learning</div>
+        <div class="chip" onclick="setTopic('Web Development')">Web Development</div>
+        <div class="chip" onclick="setTopic('Psychology')">Psychology</div>
+      </div>
+    </div>
+
+    <div class="mindmap-container">
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Generating your mindmap...</p>
+      </div>
+      
+      <div class="empty-state" id="emptyState">
+        <div style="font-size: 3rem; margin-bottom: 15px;">🎯</div>
+        <h3>Ready to explore?</h3>
+        <p>Enter a topic above to generate your personalized mindmap</p>
+      </div>
+
+      <div id="mindmap"></div>
+      
+      <div class="controls" id="controls" style="display: none;">
+        <button class="btn btn-secondary" onclick="exportMindMap()">📥 Download PNG</button>
+        <button class="btn btn-secondary" onclick="exportSVG()">📄 Download SVG</button>
+        <button class="btn btn-secondary" onclick="toggleVideos()">🎥 Show All Videos</button>
+      </div>
+    </div>
+
+    <div class="video-section" id="videoSection">
+      <div class="video-header">
+        <h2 id="videoSectionTitle">📺 Related Learning Videos</h2>
+        <button class="close-btn" onclick="toggleVideos()">×</button>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+  </div>
+
+ 
+</body>
+</html>
