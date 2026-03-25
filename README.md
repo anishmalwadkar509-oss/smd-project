@@ -2,7 +2,7 @@
 
 This is a simple and interactive **MindMap Web App** built using HTML, CSS, and JavaScript. It allows users to create, edit, and visualize mind maps directly in the browser.
 
-🔗 **Live Site**: [https://pratikdate.netlify.app](https://pratikdate.netlify.app)
+🔗 **Live Site**: )
 
 ---
 
