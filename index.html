@@ -24,11 +24,19 @@
         <span class="brand-icon">🧠</span>
         <span class="brand-name">MindMap<span class="brand-accent">AI</span></span>
       </a>
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="#features" class="nav-link">Features</a>
-        <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
-        <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+        <!-- Shown when logged OUT -->
+        <span id="navGuest">
+          <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+          <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+        </span>
+        <!-- Shown when logged IN -->
+        <span id="navUser" style="display:none; align-items:center; gap:10px;">
+          <span class="nav-user-badge" id="navUserName"></span>
+          <button class="nav-btn nav-btn-outline" onclick="logout()" style="cursor:pointer;">Log Out</button>
+        </span>
       </div>
       <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -37,8 +45,13 @@
     <div class="nav-mobile" id="mobileMenu">
       <a href="index.html" class="nav-link active">Home</a>
       <a href="#features" class="nav-link">Features</a>
-      <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
-      <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+      <span id="navGuestMobile">
+        <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+        <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+      </span>
+      <span id="navUserMobile" style="display:none;">
+        <button class="nav-btn nav-btn-outline" onclick="logout()" style="cursor:pointer;width:100%;">Log Out</button>
+      </span>
     </div>
   </nav>
 
@@ -95,49 +108,64 @@
       <p>Transform any topic into a visual learning experience</p>
     </div>
 
-    <div class="input-section">
-      <div class="input-group">
-        <input id="topicInput" type="text" placeholder="Enter any topic (e.g., Machine Learning, JavaScript, Biology)..." maxlength="100">
-        <button class="btn btn-primary" onclick="generateMindMap()">
-          <span id="generateText">Generate MindMap</span>
-        </button>
+    <!-- AUTH GATE: shown when logged OUT -->
+    <div class="auth-gate" id="authGate">
+      <div class="gate-icon">🔐</div>
+      <h2>Sign in to Generate Mind Maps</h2>
+      <p>Create a free account or log in to unlock the full AI MindMap Generator — including YouTube video integration and PNG/SVG exports.</p>
+      <div class="gate-btns">
+        <a href="register.html" class="cta-primary">Create Free Account →</a>
+        <a href="login.html" class="cta-secondary">Log In</a>
       </div>
-      
-      <div class="suggestion-chips">
-        <div class="chip" onclick="setTopic('Data Structures')">Data Structures</div>
-        <div class="chip" onclick="setTopic('Machine Learning')">Machine Learning</div>
-        <div class="chip" onclick="setTopic('Web Development')">Web Development</div>
-        <div class="chip" onclick="setTopic('Psychology')">Psychology</div>
-      </div>
+      <p class="gate-note">Already tried it? Your maps are saved to your account.</p>
     </div>
 
-    <div class="mindmap-container">
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p>Generating your mindmap...</p>
-      </div>
-      
-      <div class="empty-state" id="emptyState">
-        <div style="font-size: 3rem; margin-bottom: 15px;">🎯</div>
-        <h3>Ready to explore?</h3>
-        <p>Enter a topic above to generate your personalized mindmap</p>
+    <!-- APP CONTENT: shown when logged IN -->
+    <div id="appContent" style="display:none;">
+      <div class="input-section">
+        <div class="input-group">
+          <input id="topicInput" type="text" placeholder="Enter any topic (e.g., Machine Learning, JavaScript, Biology)..." maxlength="100">
+          <button class="btn btn-primary" onclick="generateMindMap()">
+            <span id="generateText">Generate MindMap</span>
+          </button>
+        </div>
+        
+        <div class="suggestion-chips">
+          <div class="chip" onclick="setTopic('Data Structures')">Data Structures</div>
+          <div class="chip" onclick="setTopic('Machine Learning')">Machine Learning</div>
+          <div class="chip" onclick="setTopic('Web Development')">Web Development</div>
+          <div class="chip" onclick="setTopic('Psychology')">Psychology</div>
+        </div>
       </div>
 
-      <div id="mindmap"></div>
-      
-      <div class="controls" id="controls" style="display: none;">
-        <button class="btn btn-secondary" onclick="exportMindMap()">📥 Download PNG</button>
-        <button class="btn btn-secondary" onclick="exportSVG()">📄 Download SVG</button>
-        <button class="btn btn-secondary" onclick="toggleVideos()">🎥 Show All Videos</button>
-      </div>
-    </div>
+      <div class="mindmap-container">
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p>Generating your mindmap...</p>
+        </div>
+        
+        <div class="empty-state" id="emptyState">
+          <div style="font-size: 3rem; margin-bottom: 15px;">🎯</div>
+          <h3>Ready to explore?</h3>
+          <p>Enter a topic above to generate your personalized mindmap</p>
+        </div>
 
-    <div class="video-section" id="videoSection">
-      <div class="video-header">
-        <h2 id="videoSectionTitle">📺 Related Learning Videos</h2>
-        <button class="close-btn" onclick="toggleVideos()">×</button>
+        <div id="mindmap"></div>
+        
+        <div class="controls" id="controls" style="display: none;">
+          <button class="btn btn-secondary" onclick="exportMindMap()">📥 Download PNG</button>
+          <button class="btn btn-secondary" onclick="exportSVG()">📄 Download SVG</button>
+          <button class="btn btn-secondary" onclick="toggleVideos()">🎥 Show All Videos</button>
+        </div>
       </div>
-      <div class="video-grid" id="videoGrid"></div>
+
+      <div class="video-section" id="videoSection">
+        <div class="video-header">
+          <h2 id="videoSectionTitle">📺 Related Learning Videos</h2>
+          <button class="close-btn" onclick="toggleVideos()">×</button>
+        </div>
+        <div class="video-grid" id="videoGrid"></div>
+      </div>
     </div>
   </div>
 
@@ -145,8 +173,8 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <span class="nav-brand" style="text-decoration:none;">🧠 MindMap<span class="brand-accent">AI</span></span>
-      <p>Built by <a href="https://anish-smd-project.netlify.app/" target="_blank">Anish Malwadkar</a></p>
-      <div class="footer-links">
+      <p>Built by <a href="https://pratikdate.netlify.app" target="_blank">Pratik Date</a></p>
+      <div class="footer-links" id="footerLinks">
         <a href="login.html">Log In</a>
         <a href="register.html">Sign Up</a>
       </div>
@@ -154,9 +182,53 @@
   </footer>
 
   <script>
+    // ---- Auth State ----
+    function getUser() {
+      try { return JSON.parse(localStorage.getItem('mm_user')); } catch { return null; }
+    }
+
+    function logout() {
+      localStorage.removeItem('mm_user');
+      location.reload();
+    }
+
+    function applyAuthState() {
+      const user = getUser();
+      const navGuest = document.getElementById('navGuest');
+      const navUser  = document.getElementById('navUser');
+      const navGuestMobile = document.getElementById('navGuestMobile');
+      const navUserMobile  = document.getElementById('navUserMobile');
+      const authGate   = document.getElementById('authGate');
+      const appContent = document.getElementById('appContent');
+      const footerLinks = document.getElementById('footerLinks');
+
+      if (user) {
+        // Logged in
+        navGuest.style.display = 'none';
+        navUser.style.display  = 'flex';
+        document.getElementById('navUserName').textContent = '👋 ' + (user.firstName || user.email);
+        navGuestMobile.style.display = 'none';
+        navUserMobile.style.display  = 'block';
+        authGate.style.display   = 'none';
+        appContent.style.display = 'block';
+        footerLinks.innerHTML = `<button onclick="logout()" style="background:none;border:none;color:var(--text-light);font-size:13px;cursor:pointer;">Log Out</button>`;
+      } else {
+        // Logged out
+        navGuest.style.display = 'flex';
+        navUser.style.display  = 'none';
+        navGuestMobile.style.display = 'block';
+        navUserMobile.style.display  = 'none';
+        authGate.style.display   = 'flex';
+        appContent.style.display = 'none';
+      }
+    }
+
     function toggleMobileMenu() {
       document.getElementById('mobileMenu').classList.toggle('open');
     }
+
+    // Run on load
+    applyAuthState();
   </script>
 </body>
 </html>

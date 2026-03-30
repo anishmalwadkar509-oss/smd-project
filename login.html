@@ -32,6 +32,15 @@
     </div>
   </nav>
 
+  <script>
+    // Redirect if already logged in
+    (function() {
+      try {
+        if (localStorage.getItem('mm_user')) window.location.href = 'index.html#app';
+      } catch(e) {}
+    })();
+  </script>
+
   <!-- AUTH CARD -->
   <main class="auth-main">
     <div class="auth-card">
@@ -122,14 +131,18 @@
 
     function handleLogin(e) {
       e.preventDefault();
+      const email = document.getElementById('email').value.trim();
       const btn = document.getElementById('loginBtn');
       btn.disabled = true;
       btn.innerHTML = '<span class="btn-spinner"></span> Logging in...';
 
       setTimeout(() => {
-        showMessage('✅ Login successful! Redirecting to your dashboard...', 'success');
-        setTimeout(() => window.location.href = 'index.html', 1500);
-      }, 1500);
+        // Save session (simulate auth — replace with real API call)
+        const firstName = email.split('@')[0];
+        localStorage.setItem('mm_user', JSON.stringify({ email, firstName }));
+        showMessage('✅ Login successful! Redirecting...', 'success');
+        setTimeout(() => window.location.href = 'index.html#app', 1200);
+      }, 1200);
     }
 
     function showMessage(text, type) {

@@ -32,6 +32,15 @@
     </div>
   </nav>
 
+  <script>
+    // Redirect if already logged in
+    (function() {
+      try {
+        if (localStorage.getItem('mm_user')) window.location.href = 'index.html#app';
+      } catch(e) {}
+    })();
+  </script>
+
   <!-- AUTH CARD -->
   <main class="auth-main">
     <div class="auth-card">
@@ -63,14 +72,14 @@
               <label for="firstName">First Name</label>
               <div class="input-wrap">
                 <span class="input-icon">👤</span>
-                <input type="text" id="firstName" placeholder="First Name" required autocomplete="given-name">
+                <input type="text" id="firstName" placeholder="Pratik" required autocomplete="given-name">
               </div>
             </div>
             <div class="form-group">
               <label for="lastName">Last Name</label>
               <div class="input-wrap">
                 <span class="input-icon">👤</span>
-                <input type="text" id="lastName" placeholder="Last Name" required autocomplete="family-name">
+                <input type="text" id="lastName" placeholder="Date" required autocomplete="family-name">
               </div>
             </div>
           </div>
@@ -184,10 +193,16 @@
       btn.disabled = true;
       btn.innerHTML = '<span class="btn-spinner"></span> Creating account...';
 
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('regEmail').value.trim();
+
       setTimeout(() => {
+        // Save session (simulate auth — replace with real API call)
+        localStorage.setItem('mm_user', JSON.stringify({ email, firstName, lastName }));
         showMessage('🎉 Account created! Welcome to MindMapAI. Redirecting...', 'success');
-        setTimeout(() => window.location.href = 'index.html', 1800);
-      }, 1500);
+        setTimeout(() => window.location.href = 'index.html#app', 1500);
+      }, 1400);
     }
 
     function showMessage(text, type) {

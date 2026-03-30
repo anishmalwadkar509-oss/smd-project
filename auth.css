@@ -624,3 +624,72 @@
   .form-row { grid-template-columns: 1fr; }
   .social-btns { grid-template-columns: 1fr; }
 }
+
+/* ============================================
+   AUTH GATE (on index page when logged out)
+   ============================================ */
+.auth-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px dashed var(--border);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
+
+.gate-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite alternate;
+}
+
+.auth-gate h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.auth-gate p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+.gate-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.gate-note {
+  font-size: 12px !important;
+  color: #a0aec0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ============================================
+   NAV USER BADGE
+   ============================================ */
+.nav-user-badge {
+  background: rgba(102,126,234,0.1);
+  color: var(--primary);
+  border: 1px solid rgba(102,126,234,0.2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
