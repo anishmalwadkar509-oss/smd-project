@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 * {
       margin: 0;
       padding: 0;
@@ -5,16 +7,17 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8fafc;
       min-height: 100vh;
-      color: #333;
+      color: #1e293b;
+      line-height: 1.5;
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 40px 20px;
     }
 
     .header {
@@ -86,27 +89,27 @@
     }
 
     .btn-primary {
-      background: #667eea;
+      background: #6366f1;
       color: white;
-      box-shadow: 0 2px 5px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
     }
 
     .btn-primary:hover {
-      background: #5a67d8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+      background: #4f46e5;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
     }
 
     .btn-secondary {
-      background: #48bb78;
+      background: #10b981;
       color: white;
-      box-shadow: 0 2px 5px rgba(72, 187, 120, 0.3);
+      box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
     }
 
     .btn-secondary:hover {
-      background: #38a169;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(72, 187, 120, 0.3);
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
     }
 
     .btn:disabled {

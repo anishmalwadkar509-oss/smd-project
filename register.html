@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="auth.css">
 </head>
-<body class="auth-body">
+<body class="auth-body register-page">
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -21,162 +21,321 @@
         <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
         <a href="register.html" class="nav-btn nav-btn-filled active-nav">Sign Up</a>
       </div>
-      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile" id="mobileMenu">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
-      <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
     </div>
   </nav>
 
-  <script>
-    // Redirect if already logged in
-    (function() {
-      try {
-        if (localStorage.getItem('mm_user')) window.location.href = 'index.html#app';
-      } catch(e) {}
-    })();
-  </script>
-
-  <!-- AUTH CARD -->
-  <main class="auth-main">
-    <div class="auth-card">
-      <div class="auth-card-left">
-        <div class="auth-left-content">
-          <div class="auth-left-icon">🚀</div>
-          <h2>Start learning smarter</h2>
-          <p>Join thousands of students and professionals using MindMapAI to master any topic.</p>
-          <ul class="auth-perks">
-            <li>✅ Free to get started</li>
-            <li>✅ No credit card needed</li>
-            <li>✅ Instant AI mind maps</li>
-            <li>✅ YouTube videos per node</li>
-          </ul>
+  <main class="register-container">
+    <div class="register-wrapper">
+      <div class="register-sidebar">
+        <div class="sidebar-content">
+          <div class="sidebar-icon">🚀</div>
+          <h2>Join MindMapAI</h2>
+          <p>The fastest way to visualize knowledge and learn any topic with the power of AI.</p>
+          
+          <div class="perk-list">
+            <div class="perk-item">
+              <span class="perk-check">✓</span>
+              <span>AI-Generated Subtopics</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-check">✓</span>
+              <span>YouTube Video Integration</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-check">✓</span>
+              <span>Export as PNG & SVG</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-check">✓</span>
+              <span>Cloud Syncing (Coming Soon)</span>
+            </div>
+          </div>
         </div>
-        <div class="auth-left-orb auth-orb-1"></div>
-        <div class="auth-left-orb auth-orb-2"></div>
       </div>
 
-      <div class="auth-card-right">
-        <div class="auth-form-header">
+      <div class="register-form-section">
+        <div class="form-header">
           <h1>Create Account</h1>
-          <p>Already have an account? <a href="login.html">Log in</a></p>
+          <p>Start your journey to smarter learning today.</p>
         </div>
 
         <form class="auth-form" onsubmit="handleRegister(event)">
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
-              <div class="input-wrap">
-                <span class="input-icon">👤</span>
-                <input type="text" id="firstName" placeholder="Pratik" required autocomplete="given-name">
-              </div>
+              <input type="text" id="firstName" placeholder="Pratik" required>
             </div>
             <div class="form-group">
               <label for="lastName">Last Name</label>
-              <div class="input-wrap">
-                <span class="input-icon">👤</span>
-                <input type="text" id="lastName" placeholder="Date" required autocomplete="family-name">
-              </div>
+              <input type="text" id="lastName" placeholder="Date" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="regEmail">Email Address</label>
-            <div class="input-wrap">
-              <span class="input-icon">📧</span>
-              <input type="email" id="regEmail" placeholder="you@example.com" required autocomplete="email">
-            </div>
+            <input type="email" id="regEmail" placeholder="name@company.com" required>
           </div>
 
           <div class="form-group">
             <label for="regPassword">Password</label>
-            <div class="input-wrap">
-              <span class="input-icon">🔒</span>
-              <input type="password" id="regPassword" placeholder="Create a strong password" required oninput="checkStrength(this.value)">
-              <button type="button" class="toggle-password" onclick="togglePass('regPassword', this)">👁</button>
+            <input type="password" id="regPassword" placeholder="••••••••" required oninput="checkStrength(this.value)">
+            <div class="strength-meter">
+              <div class="strength-bar" id="strengthBar"></div>
             </div>
-            <div class="password-strength" id="strengthBar">
-              <div class="strength-fill" id="strengthFill"></div>
-            </div>
-            <span class="strength-label" id="strengthLabel"></span>
           </div>
 
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <div class="input-wrap">
-              <span class="input-icon">🔒</span>
-              <input type="password" id="confirmPassword" placeholder="Repeat your password" required>
-              <button type="button" class="toggle-password" onclick="togglePass('confirmPassword', this)">👁</button>
-            </div>
+            <input type="password" id="confirmPassword" placeholder="••••••••" required>
           </div>
 
-          <div class="form-check">
-            <input type="checkbox" id="terms" required>
-            <label for="terms">I agree to the <a href="#" class="form-link">Terms of Service</a> and <a href="#" class="form-link">Privacy Policy</a></label>
-          </div>
+          <button type="submit" class="register-btn" id="registerBtn">Create Account</button>
 
-          <button type="submit" class="auth-submit-btn" id="registerBtn">
-            <span>Create Account</span>
-          </button>
-
-          <div class="auth-divider"><span>or sign up with</span></div>
-
-          <div class="social-btns">
-            <button type="button" class="social-btn">
-              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="18"> Google
-            </button>
-            <button type="button" class="social-btn">
-              <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" width="18"> GitHub
-            </button>
+          <div class="form-footer">
+            <p>Already have an account? <a href="login.html">Log In</a></p>
           </div>
         </form>
-
-        <div id="authMessage" class="auth-message" style="display:none;"></div>
       </div>
     </div>
   </main>
 
-  <script>
-    function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
+  <style>
+    .register-page {
+      background: #ffffff;
     }
 
-    function togglePass(id, btn) {
-      const input = document.getElementById(id);
-      if (input.type === 'password') {
-        input.type = 'text';
-        btn.textContent = '🙈';
-      } else {
-        input.type = 'password';
-        btn.textContent = '👁';
+    .register-container {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .register-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      background: #ffffff;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f1f5f9;
+    }
+
+    .register-sidebar {
+      flex: 1;
+      background: #0f172a;
+      color: white;
+      padding: 60px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .register-sidebar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 0% 0%, rgba(102, 126, 234, 0.15), transparent);
+    }
+
+    .sidebar-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .sidebar-icon {
+      font-size: 3.5rem;
+      margin-bottom: 24px;
+    }
+
+    .register-sidebar h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .register-sidebar p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .perk-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .perk-check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: rgba(72, 187, 120, 0.2);
+      color: #48bb78;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .register-form-section {
+      flex: 1.2;
+      padding: 60px;
+      background: white;
+    }
+
+    .form-header {
+      margin-bottom: 40px;
+    }
+
+    .form-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      color: #64748b;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: #667eea;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .strength-meter {
+      height: 4px;
+      background: #f1f5f9;
+      border-radius: 2px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .strength-bar {
+      height: 100%;
+      width: 0%;
+      transition: all 0.3s;
+    }
+
+    .register-btn {
+      width: 100%;
+      padding: 14px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+
+    .register-btn:hover {
+      background: #5a67d8;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+
+    .form-footer a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .register-wrapper {
+        flex-direction: column;
+      }
+      .register-sidebar {
+        padding: 40px;
+      }
+      .register-sidebar h2 {
+        font-size: 2rem;
+      }
+      .register-form-section {
+        padding: 40px;
       }
     }
 
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script>
     function checkStrength(val) {
-      const fill = document.getElementById('strengthFill');
-      const label = document.getElementById('strengthLabel');
+      const bar = document.getElementById('strengthBar');
       let score = 0;
       if (val.length >= 8) score++;
       if (/[A-Z]/.test(val)) score++;
       if (/[0-9]/.test(val)) score++;
       if (/[^A-Za-z0-9]/.test(val)) score++;
 
-      const levels = [
-        { label: '', color: 'transparent', width: '0%' },
-        { label: 'Weak', color: '#e53e3e', width: '25%' },
-        { label: 'Fair', color: '#ed8936', width: '50%' },
-        { label: 'Good', color: '#ecc94b', width: '75%' },
-        { label: 'Strong 💪', color: '#48bb78', width: '100%' },
-      ];
-
-      fill.style.width = levels[score].width;
-      fill.style.background = levels[score].color;
-      label.textContent = levels[score].label;
-      label.style.color = levels[score].color;
+      const colors = ['#e53e3e', '#ed8936', '#ecc94b', '#48bb78'];
+      const widths = ['25%', '50%', '75%', '100%'];
+      
+      if (score === 0) {
+        bar.style.width = '0%';
+      } else {
+        bar.style.width = widths[score-1];
+        bar.style.background = colors[score-1];
+      }
     }
 
     function handleRegister(e) {
@@ -185,31 +344,21 @@
       const p2 = document.getElementById('confirmPassword').value;
 
       if (p1 !== p2) {
-        showMessage('❌ Passwords do not match.', 'error');
+        alert('Passwords do not match');
         return;
       }
 
       const btn = document.getElementById('registerBtn');
       btn.disabled = true;
-      btn.innerHTML = '<span class="btn-spinner"></span> Creating account...';
+      btn.textContent = 'Creating account...';
 
       const firstName = document.getElementById('firstName').value.trim();
-      const lastName  = document.getElementById('lastName').value.trim();
-      const email     = document.getElementById('regEmail').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
 
       setTimeout(() => {
-        // Save session (simulate auth — replace with real API call)
-        localStorage.setItem('mm_user', JSON.stringify({ email, firstName, lastName }));
-        showMessage('🎉 Account created! Welcome to MindMapAI. Redirecting...', 'success');
-        setTimeout(() => window.location.href = 'index.html#app', 1500);
-      }, 1400);
-    }
-
-    function showMessage(text, type) {
-      const msg = document.getElementById('authMessage');
-      msg.textContent = text;
-      msg.className = `auth-message ${type}`;
-      msg.style.display = 'block';
+        localStorage.setItem('mm_user', JSON.stringify({ email, firstName }));
+        window.location.href = 'index.html#app';
+      }, 1500);
     }
   </script>
 </body>

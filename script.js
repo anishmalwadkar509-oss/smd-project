@@ -266,11 +266,11 @@ const cohereAPI = "LVS2pCt7IkKQhbPpnwYa14aODimwYV812Zrgyejf";
       
       centralGradient.append("stop")
         .attr("offset", "0%")
-        .attr("stop-color", "#667eea");
+        .attr("stop-color", "#6366f1");
       
       centralGradient.append("stop")
         .attr("offset", "100%")
-        .attr("stop-color", "#5a67d8");
+        .attr("stop-color", "#4f46e5");
 
       const subtopicGradient = defs.append("linearGradient")
         .attr("id", "subtopicGradient")
@@ -281,11 +281,11 @@ const cohereAPI = "LVS2pCt7IkKQhbPpnwYa14aODimwYV812Zrgyejf";
       
       subtopicGradient.append("stop")
         .attr("offset", "0%")
-        .attr("stop-color", "#48bb78");
+        .attr("stop-color", "#10b981");
       
       subtopicGradient.append("stop")
         .attr("offset", "100%")
-        .attr("stop-color", "#38a169");
+        .attr("stop-color", "#059669");
 
       // Tree layout parameters
       const rootX = 100;
@@ -318,7 +318,7 @@ const cohereAPI = "LVS2pCt7IkKQhbPpnwYa14aODimwYV812Zrgyejf";
                      ${midX},${child.y} 
                      ${child.x - 30},${child.y}`)
           .attr("fill", "none")
-          .attr("stroke", "#667eea")
+          .attr("stroke", "#6366f1")
           .attr("stroke-width", 2)
           .attr("opacity", 0.6);
       });
@@ -337,7 +337,7 @@ const cohereAPI = "LVS2pCt7IkKQhbPpnwYa14aODimwYV812Zrgyejf";
         .attr("rx", 25)
         .attr("ry", 25)
         .attr("fill", "url(#centralGradient)")
-        .attr("stroke", "#5a67d8")
+        .attr("stroke", "#4f46e5")
         .attr("stroke-width", 2)
         .attr("filter", "drop-shadow(2px 2px 5px rgba(0,0,0,0.15))")
         .on("click", () => loadVideos(topic, 'main'));
@@ -394,7 +394,7 @@ const cohereAPI = "LVS2pCt7IkKQhbPpnwYa14aODimwYV812Zrgyejf";
           .attr("rx", 18)
           .attr("ry", 18)
           .attr("fill", "url(#subtopicGradient)")
-          .attr("stroke", "#38a169")
+          .attr("stroke", "#059669")
           .attr("stroke-width", 1.5)
           .attr("filter", "drop-shadow(1px 1px 3px rgba(0,0,0,0.1))")
           .style("cursor", "pointer")

@@ -4,16 +4,16 @@
 
 /* ---- CSS Variables ---- */
 :root {
-  --primary: #667eea;
-  --primary-dark: #5a67d8;
-  --green: #48bb78;
-  --green-dark: #38a169;
-  --text: #2d3748;
-  --text-light: #718096;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --green: #10b981;
+  --green-dark: #059669;
+  --text: #0f172a;
+  --text-light: #64748b;
   --border: #e2e8f0;
-  --radius: 12px;
-  --shadow: 0 4px 20px rgba(0,0,0,0.08);
-  --nav-height: 64px;
+  --radius: 16px;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --nav-height: 72px;
 }
 
 /* ============================================
@@ -328,6 +328,86 @@
 .feature-icon { font-size: 2rem; margin-bottom: 14px; }
 .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 .feature-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; }
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.how-it-works {
+  padding: 100px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.step-card {
+  padding: 40px 32px;
+  background: white;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.step-card:hover {
+  transform: translateY(-10px);
+}
+
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: 32px;
+  width: 44px;
+  height: 44px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+}
+
+.step-card h3 {
+  margin: 15px 0 12px;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.step-card p {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .steps-grid { grid-template-columns: 1fr; gap: 48px; }
+  .section-title { font-size: 2rem; }
+}
 
 /* ============================================
    FOOTER

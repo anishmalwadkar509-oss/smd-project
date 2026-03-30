@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="auth.css">
 </head>
-<body class="auth-body">
+<body class="auth-body login-page">
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -21,135 +21,243 @@
         <a href="login.html" class="nav-btn nav-btn-outline active-nav">Log In</a>
         <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
       </div>
-      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile" id="mobileMenu">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
-      <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
     </div>
   </nav>
 
-  <script>
-    // Redirect if already logged in
-    (function() {
-      try {
-        if (localStorage.getItem('mm_user')) window.location.href = 'index.html#app';
-      } catch(e) {}
-    })();
-  </script>
-
-  <!-- AUTH CARD -->
-  <main class="auth-main">
-    <div class="auth-card">
-      <div class="auth-card-left">
-        <div class="auth-left-content">
-          <div class="auth-left-icon">🧠</div>
-          <h2>Welcome back!</h2>
-          <p>Log in to access your saved mind maps, history, and personalized learning paths.</p>
-          <ul class="auth-perks">
-            <li>✅ Unlimited mind maps</li>
-            <li>✅ YouTube video integration</li>
-            <li>✅ PNG & SVG exports</li>
-            <li>✅ Topic history saved</li>
-          </ul>
-        </div>
-        <div class="auth-left-orb auth-orb-1"></div>
-        <div class="auth-left-orb auth-orb-2"></div>
+  <main class="auth-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">🧠</div>
+        <h1>Welcome Back</h1>
+        <p>Login to your account to continue</p>
       </div>
 
-      <div class="auth-card-right">
-        <div class="auth-form-header">
-          <h1>Log In</h1>
-          <p>Don't have an account? <a href="register.html">Sign up free</a></p>
+      <form class="auth-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="you@example.com" required>
         </div>
 
-        <form class="auth-form" onsubmit="handleLogin(event)">
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <div class="input-wrap">
-              <span class="input-icon">📧</span>
-              <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
-            </div>
+        <div class="form-group">
+          <div class="label-row">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-link">Forgot?</a>
           </div>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
 
-          <div class="form-group">
-            <label for="password">
-              Password
-              <a href="#" class="form-link-right">Forgot password?</a>
-            </label>
-            <div class="input-wrap">
-              <span class="input-icon">🔒</span>
-              <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
-              <button type="button" class="toggle-password" onclick="togglePass('password', this)">👁</button>
-            </div>
-          </div>
+        <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
 
-          <div class="form-check">
-            <input type="checkbox" id="remember">
-            <label for="remember">Remember me for 30 days</label>
-          </div>
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
 
-          <button type="submit" class="auth-submit-btn" id="loginBtn">
-            <span>Log In</span>
+        <div class="social-grid">
+          <button type="button" class="social-link">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+            Google
           </button>
+          <button type="button" class="social-link">
+            <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub">
+            GitHub
+          </button>
+        </div>
+      </form>
 
-          <div class="auth-divider"><span>or continue with</span></div>
-
-          <div class="social-btns">
-            <button type="button" class="social-btn">
-              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="18"> Google
-            </button>
-            <button type="button" class="social-btn">
-              <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" width="18"> GitHub
-            </button>
-          </div>
-        </form>
-
-        <div id="authMessage" class="auth-message" style="display:none;"></div>
+      <div class="login-footer">
+        <p>New here? <a href="register.html">Create an account</a></p>
       </div>
     </div>
   </main>
 
+  <style>
+    .login-page {
+      background: radial-gradient(circle at top right, rgba(102, 126, 234, 0.1), transparent),
+                  radial-gradient(circle at bottom left, rgba(72, 187, 120, 0.1), transparent),
+                  #f8fafc;
+    }
+
+    .auth-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      min-height: calc(100vh - 64px);
+    }
+
+    .login-card {
+      background: white;
+      width: 100%;
+      max-width: 440px;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .login-logo {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .login-header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #1a202c;
+      margin-bottom: 8px;
+    }
+
+    .login-header p {
+      color: #718096;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .forgot-link {
+      font-size: 0.75rem;
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: #667eea;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      background: #5a67d8;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+    }
+
+    .divider {
+      text-align: center;
+      margin: 24px 0;
+      position: relative;
+    }
+
+    .divider::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .divider span {
+      background: white;
+      padding: 0 12px;
+      position: relative;
+      color: #a0aec0;
+      font-size: 0.875rem;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      background: white;
+      color: #4a5568;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .social-link:hover {
+      background: #f7fafc;
+      border-color: #cbd5e0;
+    }
+
+    .social-link img {
+      width: 20px;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.875rem;
+      color: #718096;
+    }
+
+    .login-footer a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+
   <script>
-    function toggleMobileMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-
-    function togglePass(id, btn) {
-      const input = document.getElementById(id);
-      if (input.type === 'password') {
-        input.type = 'text';
-        btn.textContent = '🙈';
-      } else {
-        input.type = 'password';
-        btn.textContent = '👁';
-      }
-    }
-
     function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
       const btn = document.getElementById('loginBtn');
       btn.disabled = true;
-      btn.innerHTML = '<span class="btn-spinner"></span> Logging in...';
+      btn.textContent = 'Signing in...';
 
       setTimeout(() => {
-        // Save session (simulate auth — replace with real API call)
         const firstName = email.split('@')[0];
         localStorage.setItem('mm_user', JSON.stringify({ email, firstName }));
-        showMessage('✅ Login successful! Redirecting...', 'success');
-        setTimeout(() => window.location.href = 'index.html#app', 1200);
+        window.location.href = 'index.html#app';
       }, 1200);
-    }
-
-    function showMessage(text, type) {
-      const msg = document.getElementById('authMessage');
-      msg.textContent = text;
-      msg.className = `auth-message ${type}`;
-      msg.style.display = 'block';
     }
   </script>
 </body>
