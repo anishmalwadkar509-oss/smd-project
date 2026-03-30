@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | MindMapAI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">🧠</span>
+        <span class="brand-name">MindMap<span class="brand-accent">AI</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="login.html" class="nav-btn nav-btn-outline active-nav">Log In</a>
+        <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+      <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- AUTH CARD -->
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="auth-card-left">
+        <div class="auth-left-content">
+          <div class="auth-left-icon">🧠</div>
+          <h2>Welcome back!</h2>
+          <p>Log in to access your saved mind maps, history, and personalized learning paths.</p>
+          <ul class="auth-perks">
+            <li>✅ Unlimited mind maps</li>
+            <li>✅ YouTube video integration</li>
+            <li>✅ PNG & SVG exports</li>
+            <li>✅ Topic history saved</li>
+          </ul>
+        </div>
+        <div class="auth-left-orb auth-orb-1"></div>
+        <div class="auth-left-orb auth-orb-2"></div>
+      </div>
+
+      <div class="auth-card-right">
+        <div class="auth-form-header">
+          <h1>Log In</h1>
+          <p>Don't have an account? <a href="register.html">Sign up free</a></p>
+        </div>
+
+        <form class="auth-form" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">📧</span>
+              <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">
+              Password
+              <a href="#" class="form-link-right">Forgot password?</a>
+            </label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="toggle-password" onclick="togglePass('password', this)">👁</button>
+            </div>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me for 30 days</label>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" id="loginBtn">
+            <span>Log In</span>
+          </button>
+
+          <div class="auth-divider"><span>or continue with</span></div>
+
+          <div class="social-btns">
+            <button type="button" class="social-btn">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="18"> Google
+            </button>
+            <button type="button" class="social-btn">
+              <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" width="18"> GitHub
+            </button>
+          </div>
+        </form>
+
+        <div id="authMessage" class="auth-message" style="display:none;"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        btn.textContent = '👁';
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="btn-spinner"></span> Logging in...';
+
+      setTimeout(() => {
+        showMessage('✅ Login successful! Redirecting to your dashboard...', 'success');
+        setTimeout(() => window.location.href = 'index.html', 1500);
+      }, 1500);
+    }
+
+    function showMessage(text, type) {
+      const msg = document.getElementById('authMessage');
+      msg.textContent = text;
+      msg.className = `auth-message ${type}`;
+      msg.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

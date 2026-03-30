@@ -1,24 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI MindMap Generator</title>
-  <title>Pratik Date | Portfolio</title>
-   <meta name="description" content="Official website of Pratik Date - showcasing projects, skills, and contact information.">
-   <meta name="keywords" content="Pratik Date, Portfolio, Web Developer, Projects, Contact">
-   <meta name="robots" content="index, follow">
-   <meta name="author" content="Pratik Date">
-
+  <meta name="description" content="Official website of Pratik Date - showcasing projects, skills, and contact information.">
+  <meta name="keywords" content="Pratik Date, Portfolio, Web Developer, Projects, Contact">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Pratik Date">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-   <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <meta name="google-site-verification" content="HMmuwfa1cDxRn2XttiLmvxPuq828xt9Ou_w1SPefj2E" />
 </head>
 <body>
-  <div class="container">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">🧠</span>
+        <span class="brand-name">MindMap<span class="brand-accent">AI</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+        <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+      <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">✨ AI-Powered Learning</div>
+      <h1 class="hero-title">Visualize Knowledge<br><span class="hero-gradient">Instantly</span></h1>
+      <p class="hero-subtitle">Transform any topic into a beautiful, interactive mind map with AI. Learn faster, think deeper.</p>
+      <div class="hero-cta">
+        <a href="register.html" class="cta-primary">Get Started Free →</a>
+        <a href="#app" class="cta-secondary">Try Now</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="floating-card fc-1">🎯 Machine Learning</div>
+      <div class="floating-card fc-2">⚡ Instant Results</div>
+      <div class="floating-card fc-3">🎥 Videos Included</div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Powered</h3>
+        <p>Cohere AI generates smart, contextual subtopics tailored to any subject.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎥</div>
+        <h3>Video Learning</h3>
+        <p>Click any node to instantly fetch relevant YouTube tutorials.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📥</div>
+        <h3>Export Anywhere</h3>
+        <p>Download your mind maps as PNG or SVG for presentations and notes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Mind maps generated in seconds, not minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP SECTION -->
+  <div class="container" id="app">
     <div class="header">
       <h1>🧠 AI MindMap Generator</h1>
       <p>Transform any topic into a visual learning experience</p>
@@ -70,6 +141,22 @@
     </div>
   </div>
 
- 
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="nav-brand" style="text-decoration:none;">🧠 MindMap<span class="brand-accent">AI</span></span>
+      <p>Built by <a href="https://pratikdate.netlify.app" target="_blank">Pratik Date</a></p>
+      <div class="footer-links">
+        <a href="login.html">Log In</a>
+        <a href="register.html">Sign Up</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | MindMapAI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-icon">🧠</span>
+        <span class="brand-name">MindMap<span class="brand-accent">AI</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+        <a href="register.html" class="nav-btn nav-btn-filled active-nav">Sign Up</a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="login.html" class="nav-btn nav-btn-outline">Log In</a>
+      <a href="register.html" class="nav-btn nav-btn-filled">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- AUTH CARD -->
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="auth-card-left">
+        <div class="auth-left-content">
+          <div class="auth-left-icon">🚀</div>
+          <h2>Start learning smarter</h2>
+          <p>Join thousands of students and professionals using MindMapAI to master any topic.</p>
+          <ul class="auth-perks">
+            <li>✅ Free to get started</li>
+            <li>✅ No credit card needed</li>
+            <li>✅ Instant AI mind maps</li>
+            <li>✅ YouTube videos per node</li>
+          </ul>
+        </div>
+        <div class="auth-left-orb auth-orb-1"></div>
+        <div class="auth-left-orb auth-orb-2"></div>
+      </div>
+
+      <div class="auth-card-right">
+        <div class="auth-form-header">
+          <h1>Create Account</h1>
+          <p>Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+
+        <form class="auth-form" onsubmit="handleRegister(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <div class="input-wrap">
+                <span class="input-icon">👤</span>
+                <input type="text" id="firstName" placeholder="Pratik" required autocomplete="given-name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <div class="input-wrap">
+                <span class="input-icon">👤</span>
+                <input type="text" id="lastName" placeholder="Date" required autocomplete="family-name">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">📧</span>
+              <input type="email" id="regEmail" placeholder="you@example.com" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="regPassword" placeholder="Create a strong password" required oninput="checkStrength(this.value)">
+              <button type="button" class="toggle-password" onclick="togglePass('regPassword', this)">👁</button>
+            </div>
+            <div class="password-strength" id="strengthBar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <span class="strength-label" id="strengthLabel"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="confirmPassword" placeholder="Repeat your password" required>
+              <button type="button" class="toggle-password" onclick="togglePass('confirmPassword', this)">👁</button>
+            </div>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">I agree to the <a href="#" class="form-link">Terms of Service</a> and <a href="#" class="form-link">Privacy Policy</a></label>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" id="registerBtn">
+            <span>Create Account</span>
+          </button>
+
+          <div class="auth-divider"><span>or sign up with</span></div>
+
+          <div class="social-btns">
+            <button type="button" class="social-btn">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="18"> Google
+            </button>
+            <button type="button" class="social-btn">
+              <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" width="18"> GitHub
+            </button>
+          </div>
+        </form>
+
+        <div id="authMessage" class="auth-message" style="display:none;"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        btn.textContent = '👁';
+      }
+    }
+
+    function checkStrength(val) {
+      const fill = document.getElementById('strengthFill');
+      const label = document.getElementById('strengthLabel');
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      const levels = [
+        { label: '', color: 'transparent', width: '0%' },
+        { label: 'Weak', color: '#e53e3e', width: '25%' },
+        { label: 'Fair', color: '#ed8936', width: '50%' },
+        { label: 'Good', color: '#ecc94b', width: '75%' },
+        { label: 'Strong 💪', color: '#48bb78', width: '100%' },
+      ];
+
+      fill.style.width = levels[score].width;
+      fill.style.background = levels[score].color;
+      label.textContent = levels[score].label;
+      label.style.color = levels[score].color;
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const p1 = document.getElementById('regPassword').value;
+      const p2 = document.getElementById('confirmPassword').value;
+
+      if (p1 !== p2) {
+        showMessage('❌ Passwords do not match.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('registerBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="btn-spinner"></span> Creating account...';
+
+      setTimeout(() => {
+        showMessage('🎉 Account created! Welcome to MindMapAI. Redirecting...', 'success');
+        setTimeout(() => window.location.href = 'index.html', 1800);
+      }, 1500);
+    }
+
+    function showMessage(text, type) {
+      const msg = document.getElementById('authMessage');
+      msg.textContent = text;
+      msg.className = `auth-message ${type}`;
+      msg.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
